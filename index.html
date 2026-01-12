@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Aventure Biblique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        #game {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game">
+    <h2>Aventure Biblique : David</h2>
+    <p id="story"></p>
+    <p id="life"></p>
+    <div id="choices"></div>
+</div>
+
+<script>
+let vie = 3;
+
+const story = document.getElementById("story");
+const life = document.getElementById("life");
+const choices = document.getElementById("choices");
+
+function startGame() {
+    story.textContent = "Tu es David, un jeune berger choisi par Dieu. Un lion attaque ton troupeau.";
+    life.textContent = "❤️ Vie : " + vie;
+    choices.innerHTML = `
+        <button onclick="fightLion()">Combattre le lion</button>
+        <button onclick="runAway()">Fuir</button>
+    `;
+}
+
+function fightLion() {
+    vie--;
+    story.textContent = "Tu combats le lion avec courage. Tu es blessé mais tu gagnes.";
+    life.textContent = "❤️ Vie : " + vie;
+
+    choices.innerHTML = `
+        <button onclick="fightGoliath()">Faire face à Goliath</button>
+        <button onclick="giveUp()">Avoir peur</button>
+    `;
+}
+
+function runAway() {
+    story.textContent = "Le lion détruit ton troupeau. ❌ Fin du jeu.";
+    choices.innerHTML = `<button onclick="location.reload()">Recommencer</button>`;
+}
+
+function fightGoliath() {
+    story.textContent = "Avec foi, tu lances une pierre. 🪨 Goliath est vaincu ! 🎉";
+    choices.innerHTML = `<button onclick="location.reload()">Rejouer</button>`;
+}
+
+function giveUp() {
+    story.textContent = "La peur t'envahit. ❌ Fin du jeu.";
+    choices.innerHTML = `<button onclick="location.reload()">Recommencer</button>`;
+}
+
+startGame();
+</script>
+
+</body>
+</html>
